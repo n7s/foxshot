@@ -1,0 +1,22 @@
+#!/bin/bash
+# foxshot: a simple shell script to snapshot webpages for testing
+# to be used with the foxshot.js javascript template and the on-disk html/css/ttf assets of the target webpage.
+
+# point to FF binary
+export SLIMERJSLAUNCHER=/usr/bin/firefox
+
+# check for empty parameters
+if [ -z "$1" ] ; then
+	echo " 
+	Error: You need to give the .js file as a parameter.
+	example: foxshot foxshot.js
+    To change the target html page (or other parameters) modify foxshot.js.
+	"
+else
+
+# run the headless session
+xvfb-run -a /usr/local/lib/slimerjs/slimerjs-0.10.1/slimerjs $1
+
+echo "Done. Snapshots generated."
+
+fi
